@@ -9,8 +9,8 @@ using TTracker.Models;
 namespace TTracker.Migrations
 {
     [DbContext(typeof(TTrackerDbContext))]
-    [Migration("20181104000623_Init")]
-    partial class Init
+    [Migration("20181104114937_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

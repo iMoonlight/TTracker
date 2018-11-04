@@ -28,18 +28,18 @@ namespace TTracker.Controllers
 
         // GET: api/visits/5/2018/05
         // GET: api/visits/touristId/visit.year/visit.mounth
-        [HttpGet("{id}/{year}")]
+        [HttpGet("{id}/{year}/{mounth}")]
         public IEnumerable<Visit> GetTour([FromRoute] int id, int year, int mounth)
         {
-            return _context.Visits.Where(visit => visit.TouristId == id && visit.Date.Year == year);
+            return _context.Visits.Where(visit => visit.TouristId == id && visit.Date.Year == year && visit.Date.Month == mounth);
         }
 
         // GET: api/visits/5/2018/05/12
         // GET: api/visits/touristId/visit.year/visit.mounth/visit.day
-        [HttpGet("{id}/{year}")]
+        [HttpGet("{id}/{year}/{mounth}/{day}")]
         public IEnumerable<Visit> GetTour([FromRoute] int id, int year, int mounth, int day)
         {
-            return _context.Visits.Where(visit => visit.TouristId == id && visit.Date.Year == year);
+            return _context.Visits.Where(visit => visit.TouristId == id && visit.Date.Year == year && visit.Date.Month == mounth && visit.Date.Day == day);
         }
     }
 }
