@@ -8,7 +8,7 @@ namespace TTracker.Models
     public class Country
     {
         [DataMember]
-        public int CountryId { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public string Name { get; set; }
@@ -22,7 +22,7 @@ namespace TTracker.Models
     public class Tourist
     {
         [DataMember]
-        public int TouristId { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public string Name { get; set; }
@@ -34,7 +34,7 @@ namespace TTracker.Models
     public class Visit
     {
         [DataMember]
-        public int VisitId { get; set; }
+        public int Id { get; set; }
 
         [DataMember]
         public int TouristId { get; set; }

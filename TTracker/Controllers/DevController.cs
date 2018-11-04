@@ -42,7 +42,7 @@ namespace TTracker.Controllers
                     {
                         DateTime date = Tools.StringToDate($"{day}/{mounth}/{year}", "uk-UA");
 
-                        tempVisits.Add(new Visit(tourist.TouristId, country.CountryId, date, $"Review from {tourist.Name} about {country.Name}"));
+                        tempVisits.Add(new Visit(tourist.Id, country.Id, date, $"Review from {tourist.Name} about {country.Name}"));
                     }
                 }
             }

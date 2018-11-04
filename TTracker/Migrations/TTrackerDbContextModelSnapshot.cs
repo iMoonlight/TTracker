@@ -19,33 +19,33 @@ namespace TTracker.Migrations
 
             modelBuilder.Entity("TTracker.Models.Country", b =>
                 {
-                    b.Property<int>("CountryId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
-                    b.HasKey("CountryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("TTracker.Models.Tourist", b =>
                 {
-                    b.Property<int>("TouristId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Name");
 
-                    b.HasKey("TouristId");
+                    b.HasKey("Id");
 
                     b.ToTable("Tourists");
                 });
 
             modelBuilder.Entity("TTracker.Models.Visit", b =>
                 {
-                    b.Property<int>("VisitId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("CountryId");
@@ -56,7 +56,7 @@ namespace TTracker.Migrations
 
                     b.Property<string>("TouristReview");
 
-                    b.HasKey("VisitId");
+                    b.HasKey("Id");
 
                     b.HasIndex("CountryId");
 

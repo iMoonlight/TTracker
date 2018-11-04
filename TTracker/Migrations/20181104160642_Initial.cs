@@ -12,34 +12,34 @@ namespace TTracker.Migrations
                 name: "Countries",
                 columns: table => new
                 {
-                    CountryId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Countries", x => x.CountryId);
+                    table.PrimaryKey("PK_Countries", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Tourists",
                 columns: table => new
                 {
-                    TouristId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tourists", x => x.TouristId);
+                    table.PrimaryKey("PK_Tourists", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Visits",
                 columns: table => new
                 {
-                    VisitId = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     TouristId = table.Column<int>(nullable: false),
                     CountryId = table.Column<int>(nullable: false),
@@ -48,18 +48,18 @@ namespace TTracker.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Visits", x => x.VisitId);
+                    table.PrimaryKey("PK_Visits", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Visits_Countries_CountryId",
                         column: x => x.CountryId,
                         principalTable: "Countries",
-                        principalColumn: "CountryId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Visits_Tourists_TouristId",
                         column: x => x.TouristId,
                         principalTable: "Tourists",
-                        principalColumn: "TouristId",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

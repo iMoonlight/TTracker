@@ -24,6 +24,8 @@ namespace TTracker
             string connectionString = "server=localhost;database=ttracker;uid=root;pwd=parol111";
             services.AddDbContext<TTrackerDbContext>(options => options.UseMySql(connectionString));
 
+            services.AddDirectoryBrowser();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 
@@ -34,6 +36,9 @@ namespace TTracker
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseStaticFiles();
+            app.UseDirectoryBrowser();
 
             app.UseMvc();
         }
