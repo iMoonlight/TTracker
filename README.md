@@ -35,8 +35,8 @@ GET: api/tourists
 GET: api/tourists/touristId
 
 GET: api/visits/touristId/visit.year
-GET: api/visits/touristId/visit.year/vist.mounth
-GET: api/visits/touristId/visit.year/visit.mounth/vist.day
+GET: api/visits/touristId/visit.year/visit.mounth
+GET: api/visits/touristId/visit.year/visit.mounth/visit.day
 ```
 Dev
 ```api
