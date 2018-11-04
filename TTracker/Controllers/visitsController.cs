@@ -9,11 +9,11 @@ namespace TTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class visitsController : ControllerBase
+    public class VisitsController : ControllerBase
     {
         private readonly TTrackerDbContext _context;
 
-        public visitsController(TTrackerDbContext context)
+        public VisitsController(TTrackerDbContext context)
         {
             _context = context;
         }
@@ -27,7 +27,7 @@ namespace TTracker.Controllers
         }
 
         // GET: api/visits/5/2018/05
-        // GET: api/visits/touristId/visit.year/vist.mounth
+        // GET: api/visits/touristId/visit.year/visit.mounth
         [HttpGet("{id}/{year}")]
         public IEnumerable<Visit> GetTour([FromRoute] int id, int year, int mounth)
         {
@@ -35,7 +35,7 @@ namespace TTracker.Controllers
         }
 
         // GET: api/visits/5/2018/05/12
-        // GET: api/visits/touristId/visit.year/visit.mounth/vist.day
+        // GET: api/visits/touristId/visit.year/visit.mounth/visit.day
         [HttpGet("{id}/{year}")]
         public IEnumerable<Visit> GetTour([FromRoute] int id, int year, int mounth, int day)
         {

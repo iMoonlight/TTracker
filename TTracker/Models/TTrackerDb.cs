@@ -15,7 +15,7 @@ namespace TTracker.Models
         [DataMember]
         public string Description { get; set; }
 
-        //public List<Visit> Visits { get; set; } = new List<Visit>(); //Only for autogeneration
+        public List<Visit> Visits { get; set; } = new List<Visit>(); //Only for autogeneration
     }
 
     [DataContract]
@@ -27,7 +27,7 @@ namespace TTracker.Models
         [DataMember]
         public string Name { get; set; }
 
-        //public List<Visit> Visits { get; set; } = new List<Visit>(); //Only for autogeneration
+        public List<Visit> Visits { get; set; } = new List<Visit>(); //Only for autogeneration
     }
 
     [DataContract]

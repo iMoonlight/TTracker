@@ -10,11 +10,11 @@ namespace TTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class devController : ControllerBase
+    public class DevController : ControllerBase
     {
         private readonly TTrackerDbContext _context;
 
-        public devController(TTrackerDbContext context)
+        public DevController(TTrackerDbContext context)
         {
             _context = context;
         }

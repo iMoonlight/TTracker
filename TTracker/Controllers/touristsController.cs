@@ -7,11 +7,11 @@ namespace TTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class touristsController : ControllerBase
+    public class TouristsController : ControllerBase
     {
         private readonly TTrackerDbContext _context;
 
-        public touristsController(TTrackerDbContext context)
+        public TouristsController(TTrackerDbContext context)
         {
             _context = context;
         }

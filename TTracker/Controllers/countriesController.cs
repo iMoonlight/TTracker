@@ -7,11 +7,11 @@ namespace TTracker.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class countriesController : ControllerBase
+    public class CountriesController : ControllerBase
     {
         private readonly TTrackerDbContext _context;
 
-        public countriesController(TTrackerDbContext context)
+        public CountriesController(TTrackerDbContext context)
         {
             _context = context;
         }
