@@ -68,9 +68,9 @@ GET api/countries/{countryId}
 GET api/tourists
 GET api/tourists/{touristId}
 
-GET api/visits/touristId/{visit.year}
-GET api/visits/touristId/{visit.year}/{visit.mounth}
-GET api/visits/touristId/{visit.year}/{visit.mounth}/{visit.day}
+GET api/visits/{touristId}/{visit.year}
+GET api/visits/{touristId}/{visit.year}/{visit.mounth}
+GET api/visits/{touristId}/{visit.year}/{visit.mounth}/{visit.day}
 ```
 Dev
 ```api
