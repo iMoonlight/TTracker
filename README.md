@@ -2,6 +2,7 @@
 ### Startup
 
 Install and configure your own MySQL server.
+
 Install package references with NuGet.
 
  ```pwsh
@@ -21,6 +22,7 @@ Apply already generaed migration.
 ```
 
 Build solution.
+
 Done.
 
 Also you can execute fakedata.sql to to fill db with some data.
