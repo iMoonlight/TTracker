@@ -25,8 +25,8 @@
 
   <!-- Side navigation -->
   <div class="sidenav">
-    <a href="index.html" class="active">Countries</a>
-    <a href="tourists.html">Tourists</a>
+    <a href="index.html">Countries</a>
+    <a href="tourists.html" class="active">Tourists</a>
     <a href="visits.html">Visits</a>
   </div>
 
@@ -39,14 +39,12 @@
             <tr>
               <th>Id</th>
               <th>Name</th>
-              <th>Description</th>
             </tr>
           </thead>
-          <tbody data-bind="foreach: { data: countries, as: 'country' }">
+          <tbody data-bind="foreach: { data: tourists, as: 'tourist' }">
             <tr>
-              <td data-bind="text: country.id"></td>
-              <td data-bind="text: country.name"></td>
-              <td data-bind="text: country.description"></td>
+              <td data-bind="text: tourist.id"></td>
+              <td data-bind="text: tourist.name"></td>
             </tr>
           </tbody>
         </table>

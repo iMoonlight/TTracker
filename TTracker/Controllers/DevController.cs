@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TTracker.Models;
+using TTracker.Tools;
 
 namespace TTracker.Controllers
 {
@@ -26,23 +24,19 @@ namespace TTracker.Controllers
             List<Visit> tempVisits = new List<Visit>();
             Random random;
 
-            foreach (Tourist tourist in _context.Tourists)
+            foreach (Country country in _context.Countries)
             {
                 random = new Random();
+                RandomDateTime dateRandom = new RandomDateTime();
 
-                foreach (Country country in _context.Countries)
+                foreach (Tourist tourist in _context.Tourists)
                 {
-                    bool doVisit = random.Next(1, 101) > (100-chance);
-
-                    int year = random.Next(2010, 2019);
-                    int mounth = random.Next(1, 13);
-                    int day = random.Next(1, 29);
+                    bool doVisit = random.Next(1, 101) > (100 - chance);
 
                     if (doVisit)
                     {
-                        DateTime date = Tools.StringToDate($"{day}/{mounth}/{year}", "uk-UA");
 
-                        tempVisits.Add(new Visit(tourist.Id, country.Id, date, $"Review from {tourist.Name} about {country.Name}"));
+                        tempVisits.Add(new Visit(tourist.Id, country.Id, dateRandom.Next(), $"Review from {tourist.Name} about {country.Name}"));
                     }
                 }
             }
