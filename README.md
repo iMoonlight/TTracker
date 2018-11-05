@@ -30,6 +30,8 @@
 формат обмена данными и прочее вы проектируете самостоятельно
 в соответствии с собственными предпочтениями.
 ```
+### Current state
+![Current state](https://raw.githubusercontent.com/iMoonlight/TTracker/master/misc/currentstate.png)
 
 ### Startup
 
