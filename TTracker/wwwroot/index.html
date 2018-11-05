@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="knockoutjs and bootstrap frontend page">
+  <meta name="author" content="iMoonlight">
+
+  <title>TTracker frontend</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="customcss/styles.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Side navigation -->
+  <div class="sidenav">
+    <a href="#" class="active">Countries</a>
+    <a href="#">Tourists</a>
+    <a href="#">Visits</a>
+  </div>
+
+  <!-- Page content -->
+  <div class="main">
+    <div class="container">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Name</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody data-bind="foreach: { data: countries, as: 'country' }">
+            <tr>
+              <td data-bind="text: country.id"></td>
+              <td data-bind="text: country.name"></td>
+              <td data-bind="text: country.description"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- production version, optimized for size and speed -->
+  <script src="vendor/knockout-3.4.2.js"></script>
+
+  <script src="customjs/knockout.logic.js"></script>
+  <script src="customjs/api.logic.js"></script>
+</body>
+
+</html>
