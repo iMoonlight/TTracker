@@ -24,7 +24,7 @@ namespace TTracker.Controllers
         }
 
         // GET: api/countries/by/id/5
-        [HttpGet("by/{id}")]
+        [HttpGet("by/id/{id}")]
         public async Task<IActionResult> GetCountry([FromRoute] int id)
         {
             if (!ModelState.IsValid)

@@ -24,7 +24,7 @@ namespace TTracker.Controllers
         }
 
         // GET: api/tourists/by/id/5
-        [HttpGet("by/{id}")]
+        [HttpGet("by/id/{id}")]
         public async Task<IActionResult> GetTourist([FromRoute] int id)
         {
             if (!ModelState.IsValid)
