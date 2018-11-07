@@ -32,6 +32,8 @@
 ```
 ### Current state
 ![Current state](https://raw.githubusercontent.com/iMoonlight/TTracker/master/misc/currentstate.png)
+![Current state2](https://raw.githubusercontent.com/iMoonlight/TTracker/master/misc/currentstate2.png)
+![Current state3](https://raw.githubusercontent.com/iMoonlight/TTracker/master/misc/currentstate3.png)
 
 ### Startup
 
@@ -64,19 +66,18 @@ Also you can execute fakedata.sql to to fill db with some data.
 ### APIs
 Basic
 ```api
-GET api/countries
-GET api/countries/{countryId}
+GET api/countries/all
+GET api/countries/by/id/{countryId}
 
-GET api/tourists
-GET api/tourists/{touristId}
+GET api/tourists/all
+GET api/tourists/id/{touristId}
 
-GET api/visits/{touristId}/{visit.year}
-GET api/visits/{touristId}/{visit.year}/{visit.mounth}
-GET api/visits/{touristId}/{visit.year}/{visit.mounth}/{visit.day}
+GET api/visits/yearsrange
+GET api/visits/by/tourist/tourist.id/country/country.id/year/visit.date.year
 ```
 Dev
 ```api
-GET api/dev/genvisits/{chance} - generates fake visits data
+GET api/dev/visits/gen/{chance} - generates fake visits data
 ```
 
 License
