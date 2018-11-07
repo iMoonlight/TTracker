@@ -70,7 +70,7 @@ GET api/countries/all
 GET api/countries/by/id/{countryId}
 
 GET api/tourists/all
-GET api/tourists/id/{touristId}
+GET api/tourists/by/id/{touristId}
 
 GET api/visits/yearsrange
 GET api/visits/by/tourist/tourist.id/country/country.id/year/visit.date.year
