@@ -73,11 +73,14 @@ GET api/tourists/all
 GET api/tourists/by/id/{touristId}
 
 GET api/visits/yearsrange
-GET api/visits/by/tourist/tourist.id/country/country.id/year/visit.date.year
+GET api/visits/by/tourist/{tourist.id}/country/{country.id}/year/{visit.date.year}
+
+To get results without filter you can do:
+GET api/visits/by/tourist/-1/country/-1/year/-1
 ```
 Dev
 ```api
-GET api/dev/visits/gen/{chance} - generates fake visits data
+GET api/dev/visits/gen/{visit.chance} - generates fake visits data
 ```
 
 License
