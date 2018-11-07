@@ -2,148 +2,161 @@
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="knockoutjs and bootstrap frontend page">
+	<meta name="author" content="iMoonlight">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="knockoutjs and bootstrap frontend page">
-  <meta name="author" content="iMoonlight">
+	<title>TTracker frontend</title>
 
-  <title>TTracker frontend</title>
+	<!-- Bootstrap core -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
 
-  <!-- Bootstrap core -->
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-    crossorigin="anonymous">
-
-  <link href="custom/css/styles.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="custom/css/styles.css">
 </head>
 
 <body>
 
-  <!-- Side navigation -->
-  <div class="sidenav">
-    <a href="index.html">Countries</a>
-    <a href="tourists.html">Tourists</a>
-    <a href="visits.html" class="active">Visits</a>
-  </div>
+	<div id="page-wrap">
 
-  <!-- Page content -->
-  <div class="main">
-    <div class="container">
-      <div class="panel panel-default">
-        <div class="panel-body">
-          <form class="form-inline" name="input" method="get" action="#" id="filter-tables">
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <h4 class="muted">Visiter</h4>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> All tourists</label>
-                    </div>
-                    <p />
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> Especific tourist</label>
-                    </div>
-                    <p></p>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <select class="input-sm form-control" data-bind="foreach: { data: tourists, as: 'tourist' }">
-                          <option data-bind="text: tourist.name"></option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+		<!-- Side navigation -->
+		<div class="sidenav">
+			<a href="index.html">Countries</a>
+			<a href="tourists.html">Tourists</a>
+			<a href="visits.html" class="active">Visits</a>
+		</div>
 
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <h4 class="muted">Visit date</h4>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> All dates</label>
-                    </div>
-                    <p />
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> Especific date</label>
-                    </div>
-                    <p></p>
-                    <div class="input-daterange input-group" id="datepicker">
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                      <input type="text" class="input-sm form-control" name="start_date" />
-                      <span class="input-group-addon"> - </span>
-                      <input type="text" class="input-sm form-control" name="end_date" />
-                      <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+		<div id="main-content" class="main">
+			<div id="content" class="container">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<form id="filter-tables" class="form-inline" name="input" method="get" action="#">
+							<div class="row">
 
-              <div class="col-lg-4">
-                <div class="panel panel-default">
-                  <div class="panel-body">
-                    <h4 class="muted">Visit country</h4>
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> All countries</label>
-                    </div>
-                    <p />
-                    <div class="radio">
-                      <label><input type="radio" name="optradio"> Especific country</label>
-                    </div>
-                    <p></p>
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <select class="input-sm form-control" data-bind="foreach: { data: countries, as: 'country' }">
-                          <option data-bind="text: country.name"></option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-default">Search</button>
-          </form>
-        </div>
-      </div>
+								<div class="col-lg-4">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<h4 class="muted">Tourist</h4>
+											<p></p>
+											<div class="row">
+												<div class="col-sm-12">
+													<select class="input-sm form-control">
+														<option onclick="viewModel.selectedTourist = -1">Any tourist</option>
+														<!-- ko foreach: { data: tourists(), as: 'tourist' } -->
+														<option onclick="" data-bind="attr: { onclick: 'viewModel.selectedTourist = ' + tourist.id }, text: tourist.name"></option>
+														<!-- /ko -->
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Who</th>
-              <th>Where</th>
-              <th>Review</th>
-              <th>When</th>
-            </tr>
-          </thead>
-          <tbody data-bind="foreach: { data: visits, as: 'visit' }">
-            <tr>
-              <td data-bind="text: visit.touristid"></td>
-              <td data-bind="text: visit.countryid"></td>
-              <td data-bind="text: visit.touristreview"></td>
-              <td data-bind="date: visit.date"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+								<div class="col-lg-4">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<h4 class="muted">Country</h4>
+											<p></p>
+											<div class="row">
+												<div class="col-sm-12">
+													<select class="input-sm form-control">
+														<option onclick="viewModel.selectedCountry = -1">Any country</option>
+														<!-- ko foreach: { data: countries(), as: 'country' } -->
+														<option onclick="" data-bind="attr: { onclick: 'viewModel.selectedCountry = ' + country.id }, text: country.name"></option>
+														<!-- /ko -->
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-    </div>
-  </div>
+								<div class="col-lg-4">
+									<div class="panel panel-default">
+										<div class="panel-body">
+											<h4 class="muted">Year</h4>
+											<p></p>
+											<div class="row">
+												<div class="col-sm-12">
+													<select class="input-sm form-control">
+														<option onclick="viewModel.selectedYear = -1">Any year</option>
+														<!-- ko foreach: { data: visitYears(), as: 'year' } -->
+														<option onclick="" data-bind="attr: { onclick: 'viewModel.selectedYear = ' + year }, text: year"></option>
+														<!-- /ko -->
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <!-- production version, optimized for size and speed -->
-  <script src="vendor/knockout-3.4.2.js"></script>
+							</div>
 
-  <script src="custom/js/knockout.logic.js"></script>
-  <script src="custom/js/api.logic.js"></script>
+							<button onclick="apiGetVisits(viewModel.selectedTourist, viewModel.selectedCountry, viewModel.selectedYear);"
+							 type="submit" class="btn btn-default">Search</button>
+						</form>
+					</div>
+				</div>
+
+				<!-- ko if: visits().length == 0 -->
+				<div class="alert alert-info" role="alert">
+					No visits
+				</div>
+				<!-- /ko -->
+
+				<!-- ko if: visits().length > 0 -->
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Who</th>
+								<th>Where</th>
+								<th>When</th>
+								<th>Visits</th>
+								<th>Reviews</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: { data: visits, as: 'visit' }">
+							<tr>
+								<td data-bind="text: visit.touristName"></td>
+								<td data-bind="text: visit.countryName"></td>
+								<td data-bind="text: visit.year"></td>
+								<td data-bind="text: visit.visitsCount"></td>
+								<td>
+									<select class="input-sm form-control" data-bind="foreach: { data: visit.reviews, as: 'review' }">
+										<option data-bind="text: review"></option>
+									</select>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /ko -->
+
+			</div>
+		</div>
+
+	</div>
+
+	<!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	<script type="text/javascript" src="vendor/knockout-3.4.2.js"></script>
+
+	<script type="text/javascript" src="custom/js/custom.logic.js"></script>
+	<script type="text/javascript" src="custom/js/knockout.logic.js"></script>
+	<script type="text/javascript" src="custom/js/api.logic.js"></script>
+
+	<script>apiGetTouristsData();</script>
+	<script>apiGetCountriesData();</script>
+	<script>apiGetYearsRange();</script>
+
 </body>
 
 </html>

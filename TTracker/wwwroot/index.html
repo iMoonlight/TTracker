@@ -2,67 +2,82 @@
 <html lang="en">
 
 <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="knockoutjs and bootstrap frontend page">
+	<meta name="author" content="iMoonlight">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="knockoutjs and bootstrap frontend page">
-  <meta name="author" content="iMoonlight">
+	<title>TTracker frontend</title>
 
-  <title>TTracker frontend</title>
+	<!-- Bootstrap core -->
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	 crossorigin="anonymous">
 
-  <!-- Bootstrap core -->
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-    crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-    crossorigin="anonymous">
-
-  <link href="custom/css/styles.css" rel="stylesheet">
-
+	<link rel="stylesheet" href="custom/css/styles.css">
 </head>
 
 <body>
 
-  <!-- Side navigation -->
-  <div class="sidenav">
-    <a href="index.html" class="active">Countries</a>
-    <a href="tourists.html">Tourists</a>
-    <a href="visits.html">Visits</a>
-  </div>
+	<div id="page-wrap">
 
-  <!-- Page content -->
-  <div class="main">
-    <div class="container">
-      <div class="table-responsive">
-        <table class="table">
-          <thead>
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Description</th>
-            </tr>
-          </thead>
-          <tbody data-bind="foreach: { data: countries, as: 'country' }">
-            <tr>
-              <td data-bind="text: country.id"></td>
-              <td data-bind="text: country.name"></td>
-              <td data-bind="text: country.description"></td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+		<!-- Side navigation -->
+		<div class="sidenav">
+			<a href="index.html" class="active">Countries</a>
+			<a href="tourists.html">Tourists</a>
+			<a href="visits.html">Visits</a>
+		</div>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
-  <!-- production version, optimized for size and speed -->
-  <script src="vendor/knockout-3.4.2.js"></script>
+		<div id="main-content" class="main">
+			<div id="content" class="container">
 
-  <script src="custom/js/knockout.logic.js"></script>
-  <script src="custom/js/api.logic.js"></script>
+				<!-- ko if: countries().length < 1 -->
+				<div class="alert alert-info" role="alert">
+					No countries
+				</div>
+				<!-- /ko -->
+
+				<!-- ko if: countries().length > 0 -->
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Name</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: { data: countries, as: 'country' }">
+							<tr>
+								<td data-bind="text: country.id"></td>
+								<td data-bind="text: country.name"></td>
+								<td data-bind="text: country.description"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- /ko -->
+
+			</div>
+		</div>
+
+	</div>
+
+	<!--[if IE]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	 crossorigin="anonymous"></script>
+	<script type="text/javascript" src="vendor/knockout-3.4.2.js"></script>
+
+	<script type="text/javascript" src="custom/js/custom.logic.js"></script>
+	<script type="text/javascript" src="custom/js/knockout.logic.js"></script>
+	<script type="text/javascript" src="custom/js/api.logic.js"></script>
+
+	<script>apiGetCountriesData();</script>
+
 </body>
 
 </html>

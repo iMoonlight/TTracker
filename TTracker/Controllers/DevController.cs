@@ -17,31 +17,34 @@ namespace TTracker.Controllers
             _context = context;
         }
 
-        // GET: api/dev/genvisits - generates fake visits data
-        [HttpGet("genvisits/{chance}")]
+        // GET: api/dev/visits/gen/chance - generates fake visits data
+        [HttpGet("visits/gen/{chance}")]
         public IEnumerable<Visit> GenVisits([FromRoute] int chance)
         {
             List<Visit> tempVisits = new List<Visit>();
-            Random random;
+            Random random = new Random();
 
             foreach (Country country in _context.Countries)
             {
-                random = new Random();
+                bool doVisit = random.Next(0, 101) > (100 - chance);
+
                 RandomDateTime dateRandom = new RandomDateTime();
 
                 foreach (Tourist tourist in _context.Tourists)
                 {
-                    bool doVisit = random.Next(1, 101) > (100 - chance);
-
                     if (doVisit)
                     {
-
-                        tempVisits.Add(new Visit(tourist.Id, country.Id, dateRandom.Next(), $"Review from {tourist.Name} about {country.Name}"));
+                        DateTime date = dateRandom.Next();
+                        tempVisits.Add(new Visit(tourist.Id, country.Id, date, $"Review from {tourist.Name} about {country.Name} at " + date.ToShortDateString()));
                     }
                 }
             }
-            _context.Visits.AddRange(tempVisits);
-            _context.SaveChanges();
+
+            if (tempVisits.Count > 0)
+            {
+                _context.Visits.AddRange(tempVisits);
+                _context.SaveChanges();
+            }
 
             return _context.Visits;
         }

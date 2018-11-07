@@ -1,26 +1,35 @@
 var api = "http://localhost:5000/api/";
 
-function getCountriesData() {
-    $.getJSON(api + "countries", function (data) {
-        var parsed = JSON.parse(JSON.stringify(data));
+function apiGetCountriesData() {
+    $.getJSON(api + "countries/all", function (data) {
+        var countries = JSON.parse(JSON.stringify(data));
 
-        viewModel.countries.removeAll();
-        parsed.forEach(function (country) {
-            viewModel.countries.push(country);
-        });
+        viewModel.countries.Set(countries);
     })
 }
 
-function getTouristsData() {
-    $.getJSON(api + "tourists", function (data) {
-        var parsed = JSON.parse(JSON.stringify(data));
+function apiGetTouristsData() {
+    $.getJSON(api + "tourists/all", function (data) {
+        var tourists = JSON.parse(JSON.stringify(data));
 
-        viewModel.tourists.removeAll();
-        parsed.forEach(function (tourist) {
-            viewModel.tourists.push(tourist);
-        });
+        viewModel.tourists.Set(tourists);
     })
 }
 
-getCountriesData();
-getTouristsData();
+function apiGetYearsRange() {
+    $.getJSON(api + "visits/yearsrange", function (data) {
+        var yearsRange = JSON.parse(JSON.stringify(data));
+
+        viewModel.visitYearsRange(yearsRange);
+    })
+}
+
+function apiGetVisits(touristid, countryid, year) {
+    var request = api + "visits/by/tourist/" + touristid + "/country/" + countryid + "/year/" + year;
+
+    $.getJSON(request, function (data) {
+        var visits = JSON.parse(JSON.stringify(data)).sort(dynamicSort("touristName"));
+
+        viewModel.visits.Set(visits);
+    })
+}

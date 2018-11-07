@@ -58,4 +58,34 @@ namespace TTracker.Models
             TouristReview = touristReview;
         }
     }
+
+    public class YearsRange
+    {
+        public int min;
+        public int max;
+
+        public YearsRange(int _min, int _max)
+        {
+            min = _min;
+            max = _max;
+        }
+    }
+
+    public class FormatedVisit
+    {
+        public string touristName;
+        public string countryName;
+        public int year;
+        public List<string> reviews = new List<string>();
+        public int visitsCount;
+
+        public FormatedVisit(string tname, string cname, int _year, List<string> _reviews, int vcount)
+        {
+            touristName = tname;
+            countryName = cname;
+            year = _year;
+            reviews.AddRange(_reviews);
+            visitsCount = vcount;
+        }
+    }
 }

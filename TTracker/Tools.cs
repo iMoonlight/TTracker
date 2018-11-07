@@ -10,7 +10,7 @@ namespace TTracker.Tools// Custom toolset
 
         public RandomDateTime()
         {
-            start = new DateTime(2008, 1, 1);
+            start = new DateTime(2012, 1, 1);
             gen = new Random();
             range = (DateTime.Today - start).Days;
         }

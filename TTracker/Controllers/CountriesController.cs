@@ -16,15 +16,15 @@ namespace TTracker.Controllers
             _context = context;
         }
 
-        // GET: api/countries
-        [HttpGet]
+        // GET: api/countries/all
+        [HttpGet("all")]
         public IEnumerable<Country> GetCountries()
         {
             return _context.Countries;
         }
 
-        // GET: api/countries/5
-        [HttpGet("{id}")]
+        // GET: api/countries/by/id/5
+        [HttpGet("by/{id}")]
         public async Task<IActionResult> GetCountry([FromRoute] int id)
         {
             if (!ModelState.IsValid)
