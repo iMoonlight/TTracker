@@ -12,6 +12,8 @@ namespace TTracker.Controllers
     {
         private readonly TTrackerDbContext _context;
 
+        List<Visit> unformatedVisits = new List<Visit>();
+
         public VisitsController(TTrackerDbContext context)
         {
             _context = context;
@@ -22,7 +24,7 @@ namespace TTracker.Controllers
         public YearsRange GetYearsRange()
         {
             HashSet<int> years = new HashSet<int>();
-            years.UnionWith(_context.Visits.Select(v => v.Date.Year).ToList());
+            years.UnionWith(_context.Visits.Select(v => v.Date.Year));
 
             if (years.Count < 1) return new YearsRange(2010, DateTime.Today.Year);
 
@@ -34,7 +36,6 @@ namespace TTracker.Controllers
         [HttpGet("by/tourist/{tid}/country/{cid}/year/{year}")]
         public IEnumerable<FormatedVisit> GetVisitsBy([FromRoute] int tid, int cid, int year)
         {
-            List<Visit> unformatedVisits = new List<Visit>();
             unformatedVisits.AddRange(_context.Visits);
 
             if (unformatedVisits.Count < 1) return new List<FormatedVisit>();
@@ -58,25 +59,30 @@ namespace TTracker.Controllers
             uniqueCountriesIDs.UnionWith(unformatedVisits.Select(v => v.CountryId));
             uniqueYears.UnionWith(unformatedVisits.Select(v => v.Date.Year));
 
+            List<Visit> visitsFiltered = new List<Visit>();
+            List<string> reviews = new List<string>();
+
+            int visitsCount = 0;
+
             foreach (int year in uniqueYears)
             {
                 foreach(int countryId in uniqueCountriesIDs)
                 {
                     foreach(int touristId in uniqueTouristsIDs)
                     {
-                        List<Visit> visitsFiltered = new List<Visit>();
+                        visitsFiltered.Clear();
+                        reviews.Clear();
 
                         visitsFiltered.AddRange(unformatedVisits.Where(v => v.TouristId == touristId && v.CountryId == countryId && v.Date.Year == year));
 
                         if (visitsFiltered.Count < 1) continue;
 
-                        List<string> reviews = new List<string>();
-
                         string touristName = _context.Tourists.Single(t => t.Id == touristId).Name;
                         string countryName = _context.Countries.Single(t => t.Id == countryId).Name;
 
                         reviews.AddRange(visitsFiltered.Select(v => v.TouristReview));
-                        int visitsCount = visitsFiltered.Count();
+
+                        visitsCount = visitsFiltered.Count();
 
                         result.Add(new FormatedVisit(touristName, countryName,  year, reviews, visitsCount));
                     }
