@@ -1,0 +1,24 @@
+<!-- ko if: tourists().length == 0 -->
+<div class="alert alert-info" role="alert">
+	No tourist
+</div>
+<!-- /ko -->
+
+<!-- ko if: tourists().length > 0 -->
+<div class="table-responsive">
+	<table class=" table">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+			</tr>
+		</thead>
+		<tbody data-bind="foreach: { data: tourists, as: 'tourist' }">
+			<tr>
+				<td data-bind="text: tourist.id"></td>
+				<td data-bind="text: tourist.name"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<!-- /ko -->
