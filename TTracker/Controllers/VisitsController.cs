@@ -12,7 +12,7 @@ namespace TTracker.Controllers
     {
         private readonly TTrackerDbContext _context;
 
-        List<Visit> unformatedVisits = new List<Visit>();
+        List<Visit> _unformatedVisits = new List<Visit>();
 
         public VisitsController(TTrackerDbContext context)
         {
@@ -36,15 +36,15 @@ namespace TTracker.Controllers
         [HttpGet("by/tourist/{tid}/country/{cid}/year/{year}")]
         public IEnumerable<FormatedVisit> GetVisitsBy([FromRoute] int tid, int cid, int year)
         {
-            unformatedVisits.AddRange(_context.Visits);
+            _unformatedVisits.AddRange(_context.Visits);
 
-            if (unformatedVisits.Count < 1) return new List<FormatedVisit>();
+            if (_unformatedVisits.Count < 1) return new List<FormatedVisit>();
 
-            if (tid > 0) unformatedVisits = unformatedVisits.Where(v => v.TouristId == tid).ToList();
-            if (cid > 0) unformatedVisits = unformatedVisits.Where(v => v.CountryId == cid).ToList();
-            if (year > 0) unformatedVisits = unformatedVisits.Where(v => v.Date.Year == year).ToList();
+            if (tid > 0) _unformatedVisits = _unformatedVisits.Where(v => v.TouristId == tid).ToList();
+            if (cid > 0) _unformatedVisits = _unformatedVisits.Where(v => v.CountryId == cid).ToList();
+            if (year > 0) _unformatedVisits = _unformatedVisits.Where(v => v.Date.Year == year).ToList();
 
-            return FormatVisits(unformatedVisits);
+            return FormatVisits(_unformatedVisits);
         }
 
         List<FormatedVisit> FormatVisits(List<Visit> unformatedVisits)
@@ -61,8 +61,6 @@ namespace TTracker.Controllers
 
             List<Visit> visitsFiltered = new List<Visit>();
             List<string> reviews = new List<string>();
-
-            int visitsCount = 0;
 
             foreach (int year in uniqueYears)
             {
@@ -82,7 +80,7 @@ namespace TTracker.Controllers
 
                         reviews.AddRange(visitsFiltered.Select(v => v.TouristReview));
 
-                        visitsCount = visitsFiltered.Count();
+                        var visitsCount = visitsFiltered.Count();
 
                         result.Add(new FormatedVisit(touristName, countryName,  year, reviews, visitsCount));
                     }
